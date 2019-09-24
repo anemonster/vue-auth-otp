@@ -33,9 +33,18 @@
                 />
               </div>
               <div class="row">
-                <div class="col-8"></div>
-                <div class="col-4">
+                <div class="col-3"></div>
+                <div class="col-6">
                   <button type="button" class="btn btn-primary btn-block" @click="login()">Login</button>
+                </div>
+                <div class="col-3"></div>
+              </div>
+              <div class="row">
+                <div class="col-lg-12">
+                  <div class="mt-3 text-center">
+                    Belum memiliki Akun?
+                    <router-link to="/register">Register Sekarang</router-link>
+                  </div>
                 </div>
               </div>
             </form>
