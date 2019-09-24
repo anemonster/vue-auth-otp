@@ -1,26 +1,49 @@
 import Vue from "vue";
 import Router from "vue-router";
-import Home from "./views/Home.vue";
 
 Vue.use(Router);
 
-export default new Router({
+const router = new Router({
   mode: "history",
   base: process.env.BASE_URL,
-  routes: [
-    {
+  routes: [{
       path: "/",
+      alias: "/home",
       name: "home",
-      component: Home
+      meta: {
+        forUsers: true
+      },
+      component: () =>
+        import( /* webpackChunkName: "home" */ "./views/Home.vue"),
     },
     {
-      path: "/about",
-      name: "about",
-      // route level code-splitting
-      // this generates a separate chunk (about.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
+      path: "/login",
+      name: "login",
+      meta: {
+        forVisitors: true
+      },
       component: () =>
-        import(/* webpackChunkName: "about" */ "./views/About.vue")
+        import( /* webpackChunkName: "login" */ "./views/Login/Login.vue")
+    },
+    {
+      path: "/register",
+      name: "register",
+      meta: {
+        forVisitors: true
+      },
+      component: () =>
+        import( /* webpackChunkName: "register" */ "./views/Register.vue")
+    },
+    {
+      path: "/otp-request",
+      name: "otp-request",
+      meta: {
+        forVisitors: true
+      },
+      component: () =>
+        import( /* webpackChunkName: "otp-request" */ "./views/OTPRequest.vue")
     }
   ]
 });
+
+export default router
