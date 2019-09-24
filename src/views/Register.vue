@@ -53,6 +53,14 @@
                 </div>
                 <div class="col-3"></div>
               </div>
+              <div class="row">
+                <div class="col-lg-12">
+                  <div class="mt-3 text-center">
+                    Sudah memiliki Akun?
+                    <router-link to="/login">Login Sekarang</router-link>
+                  </div>
+                </div>
+              </div>
             </form>
           </div>
         </div>
