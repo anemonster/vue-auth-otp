@@ -10,11 +10,11 @@ const router = new Router({
       path: "/",
       alias: "/home",
       name: "home",
-      component: () =>
-        import( /* webpackChunkName: "home" */ "./views/Home.vue"),
       meta: {
         forUsers: true
-      }
+      },
+      component: () =>
+        import( /* webpackChunkName: "home" */ "./views/Home.vue"),
     },
     {
       path: "/login",
@@ -26,10 +26,13 @@ const router = new Router({
         import( /* webpackChunkName: "login" */ "./views/Login/Login.vue")
     },
     {
-      path: "/about",
-      name: "about",
+      path: "/register",
+      name: "register",
+      meta: {
+        forVisitors: true
+      },
       component: () =>
-        import( /* webpackChunkName: "about" */ "./views/About.vue")
+        import( /* webpackChunkName: "register" */ "./views/Register.vue")
     }
   ]
 });
