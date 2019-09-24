@@ -50,6 +50,8 @@
 import Vue from "vue";
 import axios from "axios";
 import Form from "vform";
+import moment from "moment";
+import Swal from "sweetalert2";
 import bootstrap from "bootstrap-vue";
 import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap-vue/dist/bootstrap-vue.css";
@@ -97,13 +99,23 @@ export default {
       })
         .then(response => {
           if (response.status === 201) {
-            console.log(response);
-            localStorage.setItem("token", response.data.data.user.access_token);
-            this.getCredentials(response.data.data.user.access_token);
+            const token_expiration = moment().unix() + 7200;
+            this.$auth.setToken(
+              response.data.data.user.access_token,
+              token_expiration
+            );
+            this.$router.push("/home");
+            Swal.fire({
+              position: "top-end",
+              type: "success",
+              title: "Login success",
+              showConfirmButton: false,
+              timer: 1500
+            });
+            // this.getCredentials(response.data.data.user.access_token);
           }
         })
         .catch(error => {
-          console.log("gagal");
           if (error.response.status === 422) {
             this.errors.message = error.response.data.error.errors;
           }

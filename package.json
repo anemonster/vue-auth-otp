@@ -12,6 +12,8 @@
     "bootstrap": "^4.3.1",
     "bootstrap-vue": "^2.0.2",
     "core-js": "^2.6.5",
+    "moment": "^2.24.0",
+    "sweetalert2": "^8.17.6",
     "vform": "^1.0.1",
     "vue": "^2.6.10",
     "vue-router": "^3.0.3",
