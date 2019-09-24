@@ -102,7 +102,6 @@ export default {
       data.append("latlong", 1);
       data.append("device_token", 1);
       data.append("device_type", 1);
-      console.log(data);
 
       axios({
         url: "http://localhost:8080/api/v1/register",
@@ -111,12 +110,29 @@ export default {
       })
         .then(response => {
           if (response.status === 201) {
-            this.registerData = response.data.data.user;
-            const token_expiration = moment().unix() + 7200;
-            this.$auth.setToken(
-              response.data.data.user.access_token,
-              token_expiration
-            );
+            let user_phone = response.data.data.user.phone;
+            this.requestOTP(user_phone);
+          }
+        })
+        .catch(error => {
+          if (error.response.status === 422) {
+            this.errors.message = error.response.data.error.errors;
+          }
+        });
+    },
+
+    requestOTP(phone) {
+      const data = new FormData();
+      data.append("phone", phone);
+      axios({
+        url: "http://localhost:8080/api/v1/register/otp/request",
+        method: "post",
+        data
+      })
+        .then(response => {
+          if (response.status === 201) {
+            console.log("masuk");
+            this.$router.push({ name: "otp-request", query: { phone: phone } });
           }
         })
         .catch(error => {

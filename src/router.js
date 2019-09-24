@@ -33,6 +33,15 @@ const router = new Router({
       },
       component: () =>
         import( /* webpackChunkName: "register" */ "./views/Register.vue")
+    },
+    {
+      path: "/otp-request",
+      name: "otp-request",
+      meta: {
+        forVisitors: true
+      },
+      component: () =>
+        import( /* webpackChunkName: "otp-request" */ "./views/OTPRequest.vue")
     }
   ]
 });
